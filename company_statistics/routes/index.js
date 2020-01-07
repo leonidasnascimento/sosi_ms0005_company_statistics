@@ -18,12 +18,12 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
   if (!req.body) {
-    res.status(HttpStatus.LENGTH_REQUIRED).send("Body message is required")
+    res.status(HttpStatus.PARTIAL_CONTENT).send("Body message is required")
     return
   }
 
   if (!req.body.code) {
-    res.status(HttpStatus.LENGTH_REQUIRED).send("Stock code is required")
+    res.status(HttpStatus.PARTIAL_CONTENT).send("Stock code is required")
     return
   }
 
