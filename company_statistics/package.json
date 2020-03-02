@@ -16,6 +16,7 @@
     "http-status-codes": "^1.4.0",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "sosi_cache_db_manager": "^1.1.1"
   }
 }
