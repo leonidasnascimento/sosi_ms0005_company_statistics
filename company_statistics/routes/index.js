@@ -98,7 +98,10 @@ router.put('/dividend_analysis', function (req, res, next) {
     } else {
       data.forEach(d => {
         var result = getDividendAnalysisData(d)
-        lstData.push(result);
+
+        if (result !== undefined) {
+          lstData.push(result);
+        }
       })
 
       cacheDbMngr.setValue(lstData, function (obj) {
