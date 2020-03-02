@@ -77,8 +77,15 @@ router.get('/dividend_analysis', function (req, res, next) {
       //Going to main db to retrieve the data if some error occurr when getting from Redis
       new dal()
         .getAll(function (data) {
-          var result = getDividendAnalysisData(data)
-          res.status(HttpStatus.OK).send(result);
+          data.forEach(d => {
+            var result = getDividendAnalysisData(d)
+    
+            if (result !== undefined) {
+              lstData.push(result);
+            }
+          })
+
+          res.status(HttpStatus.OK).send(lstData);
         }, function (data) {
           res.status(HttpStatus.METHOD_FAILURE).send(data);
         });
