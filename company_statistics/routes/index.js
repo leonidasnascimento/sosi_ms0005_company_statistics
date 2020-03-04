@@ -11,7 +11,11 @@ var getDividendAnalysisData = function (data) {
     valuation: 0.00,
     dividend_yield: 0.00,
     avg_payout_12_mos: 0.00,
-    avg_payout_5_yrs: 0.00
+    avg_payout_5_yrs: 0.00,
+    comp_grossdebt_ebtida: 0.00,
+    dividend_yield_5_yrs: 0.00,
+    company_roe: 0.00,
+    company_roe_5_yrs: 0.00,
   }
 
   if (data === null || data === undefined || data === {} || !('code' in data)) {
@@ -22,6 +26,10 @@ var getDividendAnalysisData = function (data) {
     result.avg_payout_5_yrs = 0.00;
     result.valuation = ('valuation' in data) ? data.valuation : 0.00;
     result.dividend_yield = ('dividendYeld' in data) ? data.dividendYeld : 0.00;
+    result.comp_grossdebt_ebtida = ('grossDebitOverEbitida' in data) ? data.grossDebitOverEbitida : 0.00;
+    result.dividend_yield_5_yrs = ('dividendYeld_5yrs' in data) ? data.dividendYeld_5yrs : 0.00;
+    result.company_roe = ('returnOnEquity' in data) ? data.returnOnEquity : 0.00;
+    result.company_roe_5_yrs = ('returnOnEquity_5yrAvg' in data) ? data.returnOnEquity_5yrAvg : 0.00;
 
     return result;
   }
@@ -79,7 +87,7 @@ router.get('/dividend_analysis', function (req, res, next) {
         .getAll(function (data) {
           data.forEach(d => {
             var result = getDividendAnalysisData(d)
-    
+
             if (result !== undefined) {
               lstData.push(result);
             }
